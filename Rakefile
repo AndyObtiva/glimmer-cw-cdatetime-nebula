@@ -15,8 +15,8 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = "glimmer-cw-cdatetime"
-  gem.homepage = "http://github.com/AndyObtiva/glimmer-cw-cdatetime"
+  gem.name = "glimmer-cw-cdatetime-nebula"
+  gem.homepage = "http://github.com/AndyObtiva/glimmer-cw-cdatetime-nebula"
   gem.license = "MIT"
   gem.summary = %Q{Nebula CDateTime Widget - Glimmer Custom Widget}
   gem.description = %Q{Nebula CDateTime Widget - Glimmer Custom Widget - A Date and Time selection widget that can be used in a textual, graphical, or combo mode.}
@@ -47,7 +47,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "glimmer-cw-cdatetime #{version}"
+  rdoc.title = "glimmer-cw-cdatetime-nebula #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

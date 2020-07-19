@@ -20,7 +20,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
 require 'bundler/setup'
 Bundler.require(:default, :development)
-require 'glimmer-cw-cdatetime'
+require 'glimmer-cw-cdatetime-nebula'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.

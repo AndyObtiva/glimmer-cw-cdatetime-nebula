@@ -1,27 +1,22 @@
 # Nebula CDateTime Widget 1.4.0.0
 ## [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem)
-[![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime)
+[![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime-nebula.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime-nebula)
 
-![Nebula CDateTime Widget](https://www.eclipse.org/nebula/widgets/cdatetime/images/CDTSnippet02.png)
+[<img alt="Nebula CDateTime Widget" src="https://www.eclipse.org/nebula/widgets/cdatetime/images/CDTSnippet02.png" />](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php)
 
-A Date and Time selection widget that can be used in a textual, graphical, or combo mode.
+The [Nebula CDateTime Widget](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php) is a Date and Time selection widget that can be used in a textual, graphical, or combo mode.
 
-Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem) to provide date/time selection via a combo/dropdown-style widget using the `c_date_time` [Glimmer DSL](https://github.com/AndyObtiva/glimmer#glimmer-dsl-syntax) keyword.
+Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem) to provide date/time selection via a combo/dropdown-style widget in [Glimmer](https://github.com/AndyObtiva/glimmer) using the `c_date_time` [Glimmer DSL](https://github.com/AndyObtiva/glimmer#glimmer-dsl-syntax) keyword.
 
-The glimmer-cw-cdatetime 1.4.0.x gem versions map to Nebula CDateTime Widget version 1.4.0
+[glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) 1.4.0.x gem versions map to Nebula CDateTime Widget version 1.4.0
 
 ## Java Imports
 
-This [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem) includes and imports the following Java JAR libraries:
+[glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) includes and imports the following Java JAR libraries:
 - 'vendor/nebula/org.eclipse.nebula.cwt_1.1.0.jar'
 - 'vendor/nebula/org.eclipse.nebula.widgets.cdatetime_1.4.0.jar'
 
-It also configures them in [Glimmer](https://github.com/AndyObtiva/glimmer) for auto import on first use:
-
-Glimmer::Config.import_swt_packages += [
-  'org.eclipse.nebula.cwt',
-  'org.eclipse.nebula.widgets.cdatetime',
-]
+It also configures them in [Glimmer](https://github.com/AndyObtiva/glimmer) for auto import via JRuby `include_package` on first use.
 
 ## Pre-requisites
 
@@ -36,7 +31,7 @@ Glimmer::Config.import_swt_packages += [
 Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer) application `Gemfile`:
 
 ```ruby
-gem 'glimmer-cw-cdatetime', '1.4.0.0'
+gem 'glimmer-cw-cdatetime-nebula', '1.4.0.0'
 ```
 
 Run:
@@ -53,7 +48,7 @@ When reusing in a [Glimmer](https://github.com/AndyObtiva/glimmer) custom shell 
 
 ```ruby
 require 'glimmer'
-require 'glimmer-cw-cdatetime'
+require 'glimmer-cw-cdatetime-nebula'
 # ... more require statements follow
 ```
 
@@ -90,7 +85,7 @@ Here is the Nebula CDateTime Widget [Javadoc API page](https://www.eclipse.org/n
 # ...
 ```
 
-![Nebula CDateTime Example](glimmer-cw-cdatetime-example.png)
+![Nebula CDateTime Example](glimmer-cw-cdatetime-nebula-example.png)
 
 ### Example of using `c_date_time` as a `table` / `table_column` editor:
 
@@ -115,13 +110,13 @@ Here is the Nebula CDateTime Widget [Javadoc API page](https://www.eclipse.org/n
 # ...
 ```
 
-![Nebula CDateTime Example](glimmer-cw-cdatetime-example-table-editor.png)
+![Nebula CDateTime Example](glimmer-cw-cdatetime-nebula-example-table-editor.png)
 
 ## Change Log
 
 - 1.4.0.0: Initial version
 
-## Contributing to glimmer-cw-cdatetime
+## Contributing to glimmer-cw-cdatetime-nebula
  
 - Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 - Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
