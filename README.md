@@ -1,5 +1,5 @@
 # Nebula CDateTime Widget 1.4.0.0
-## [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem)
+## [<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 /> Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem)
 [![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime-nebula.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime-nebula)
 
 [<img alt="Nebula CDateTime Widget" src="https://www.eclipse.org/nebula/widgets/cdatetime/images/CDTSnippet02.png" />](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php)
@@ -131,3 +131,7 @@ Here is the Nebula CDateTime Widget [Javadoc API page](https://www.eclipse.org/n
 [MIT](https://opensource.org/licenses/MIT)
 
 Copyright (c) 2020 - Andy Maleh. See [LICENSE.txt](LICENSE.txt) for further details.
+
+--
+
+[<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 />](https://github.com/AndyObtiva/glimmer) Built for [Glimmer]
