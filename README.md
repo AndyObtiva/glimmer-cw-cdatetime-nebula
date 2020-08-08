@@ -1,4 +1,4 @@
-# Nebula CDateTime Widget 1.4.0.0
+# Nebula CDateTime Widget 1.4.0.1
 ## [<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 /> Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem)
 [![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime-nebula.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime-nebula)
 
@@ -31,7 +31,7 @@ It also configures them in [Glimmer](https://github.com/AndyObtiva/glimmer) for 
 Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer) application `Gemfile`:
 
 ```ruby
-gem 'glimmer-cw-cdatetime-nebula', '1.4.0.0'
+gem 'glimmer-cw-cdatetime-nebula', '1.4.0.1'
 ```
 
 Run:
@@ -114,6 +114,7 @@ Here is the Nebula CDateTime Widget [Javadoc API page](https://www.eclipse.org/n
 
 ## Change Log
 
+- 1.4.0.1: Prevent table editor from saving upon traversing months in drop down Calendar
 - 1.4.0.0: Initial version
 
 ## Contributing to glimmer-cw-cdatetime-nebula
@@ -128,10 +129,10 @@ Here is the Nebula CDateTime Widget [Javadoc API page](https://www.eclipse.org/n
 
 ## Copyright
 
-[MIT](https://opensource.org/licenses/MIT)
+[MIT](LICENSE.txt)
 
-Copyright (c) 2020 - Andy Maleh. See [LICENSE.txt](LICENSE.txt) for further details.
+Copyright (c) 2020 - Andy Maleh
 
 --
 
-[<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 />](https://github.com/AndyObtiva/glimmer) Built for [Glimmer](https://github.com/AndyObtiva/glimmer) (Ruby Desktop Development GUI Library)
+[<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 />](https://github.com/AndyObtiva/glimmer) Built for [Glimmer](https://github.com/AndyObtiva/glimmer) (Ruby Desktop Development GUI Library).

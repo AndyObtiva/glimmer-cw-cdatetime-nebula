@@ -21,11 +21,11 @@ module Nebula
               table_proxy.cancel_edit!
             end
           }
-          on_widget_selected { |event|
-            table_proxy.finish_edit!
+          on_widget_selected { |event|          
+            table_proxy.finish_edit! unless event.widget.is_open
           }
           on_widget_default_selected { |event|
-            table_proxy.finish_edit!
+            table_proxy.finish_edit! unless event.widget.is_open
           }
         }
         table_editor_widget_proxy
