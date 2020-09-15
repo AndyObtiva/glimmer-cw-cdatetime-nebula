@@ -56,4 +56,3 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<glimmer-cs-gladiator>.freeze, [">= 0"])
   end
 end
-

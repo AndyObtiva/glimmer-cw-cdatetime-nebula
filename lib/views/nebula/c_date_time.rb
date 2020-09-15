@@ -6,7 +6,7 @@ module Nebula
     Glimmer::SWT::TableProxy.editors[:c_date_time] ||= {
       widget_value_property: :selection,
       editor_gui: lambda do |args, model, property, table_proxy|      
-        args << CDT::DROP_DOWN if args.empty?
+        args << cdt(:drop_down) if args.empty?
         table_editor_widget_proxy = c_date_time(*args) {
           table_proxy.table_editor.minimumHeight = 20
           selection model.send(property)
