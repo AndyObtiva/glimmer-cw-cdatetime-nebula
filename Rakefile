@@ -18,8 +18,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "glimmer-cw-cdatetime-nebula"
   gem.homepage = "http://github.com/AndyObtiva/glimmer-cw-cdatetime-nebula"
   gem.license = "MIT"
-  gem.summary = %Q{Nebula CDateTime Widget - Glimmer Custom Widget}
-  gem.description = %Q{Nebula CDateTime Widget - Glimmer Custom Widget - A Date and Time selection widget that can be used in a plain (graphical), dropdown, spinner, or compact text style.}
+  gem.summary = %Q{Nebula CDateTime Widget 1.4.0 - Glimmer Custom Widget}
+  gem.description = %Q{Nebula CDateTime Widget 1.4.0 - Glimmer Custom Widget - A Date and Time selection widget that can be used in a simple, dropdown, spinner, or compact style.}
   gem.email = "andy.am@gmail.com"
   gem.authors = ["Andy Maleh"]
   gem.files = Dir['VERSION', 'LICENSE.txt', 'README.md', 'lib/**/*.rb', 'vendor/**/*', 'samples/**/*']

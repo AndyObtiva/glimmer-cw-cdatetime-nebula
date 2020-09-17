@@ -25,52 +25,69 @@ module Glimmer
     # Since it is wrapping an existing SWT widget with the same name, 
     # it is not implemented as a typical "Glimmer Custom Widget", yet 
     # just a Glimmer widget proxy that extends Glimmer::SWT::WidgetProxy
-    class CDateTimeProxy < Glimmer::SWT::WidgetProxy
+    class CDateTimeProxy < WidgetProxy
       def text_widget_proxy
-        Glimmer::SWT::WidgetProxy.new(swt_widget: swt_widget.text_widget.control)
+        WidgetProxy.create(swt_widget: swt_widget.text_widget.control) if swt_widget.text_widget
       end
       
       def toggle_open
         swt_widget.set_open(!swt_widget.is_open)
       end
-
+            
+      WidgetProxy::DEFAULT_STYLES.merge!(
+        'c_date_time'              => [:border, :tab_fields, :simple],
+        'c_date'                   => [:border, :tab_fields, :simple],
+        'c_time'                   => [:border, :tab_fields, :simple],
+        'c_date_time_drop_down'    => [:border, :tab_fields, :drop_down],
+        'c_date_drop_down'         => [:border, :tab_fields, :drop_down],
+        'c_time_drop_down'         => [:border, :tab_fields, :drop_down],
+        'c_date_time_spinner'      => [:border, :tab_fields, :spinner],
+        'c_date_spinner'           => [:border, :tab_fields, :spinner],
+        'c_time_spinner'           => [:border, :tab_fields, :spinner],
+        'c_date_time_compact'      => [:border, :tab_fields, :compact],
+        'c_date_compact'           => [:border, :tab_fields, :compact],
+        'c_time_compact'           => [:border, :tab_fields, :compact],
+      )
+      
+      WidgetProxy::DEFAULT_INITIALIZERS['c_date_time'] = WidgetProxy::DEFAULT_INITIALIZERS['c_date_time_compact'] = WidgetProxy::DEFAULT_INITIALIZERS['c_date_time_spinner'] = WidgetProxy::DEFAULT_INITIALIZERS['c_date_time_drop_down'] = lambda do |widget|
+        has_pattern_style = %w[time_short time_medium date_short date_medium date_long].reduce(false) {|result, style| result || widget.get_data('proxy').has_style?(style)}
+        widget.pattern = 'MM/dd/yyyy hh:mm a' unless has_pattern_style
+      end
+      WidgetProxy::DEFAULT_INITIALIZERS['c_date'] = WidgetProxy::DEFAULT_INITIALIZERS['c_date_compact'] = WidgetProxy::DEFAULT_INITIALIZERS['c_date_spinner'] = WidgetProxy::DEFAULT_INITIALIZERS['c_date_drop_down'] = lambda do |widget|
+        has_pattern_style = %w[time_short time_medium date_short date_medium date_long].reduce(false) {|result, style| result || widget.get_data('proxy').has_style?(style)}
+        unless has_pattern_style
+          widget.format = Glimmer::SWT::CDTProxy[:date_short]
+          widget.pattern = 'MM/dd/yyyy'
+        end
+      end
+      WidgetProxy::DEFAULT_INITIALIZERS['c_time'] = WidgetProxy::DEFAULT_INITIALIZERS['c_time_compact'] = WidgetProxy::DEFAULT_INITIALIZERS['c_time_spinner'] = WidgetProxy::DEFAULT_INITIALIZERS['c_time_drop_down'] = lambda do |widget|
+        has_pattern_style = %w[time_short time_medium date_short date_medium date_long].reduce(false) {|result, style| result || widget.get_data('proxy').has_style?(style)}  
+        unless has_pattern_style
+          widget.format = Glimmer::SWT::CDTProxy[:time_short]
+          widget.pattern = 'hh:mm a'
+        end
+      end
+      
+      WidgetProxy::KEYWORD_ALIASES.merge!(
+        'c_date'                   => 'c_date_time',
+        'c_time'                   => 'c_date_time',
+        'c_date_time_compact'      => 'c_date_time',
+        'c_date_compact'           => 'c_date_time',
+        'c_time_compact'           => 'c_date_time',
+        'c_date_time_spinner'      => 'c_date_time',
+        'c_date_spinner'           => 'c_date_time',
+        'c_time_spinner'           => 'c_date_time',
+        'c_date_time_drop_down'    => 'c_date_time',
+        'c_date_drop_down'         => 'c_date_time',
+        'c_time_drop_down'         => 'c_date_time',
+      )      
+      
       private
-
-      def has_style?(style)
-        begin
-          comparison = CDTProxy[style]
-        rescue
-          begin
-            comparison = SWTProxy[style]
-          rescue
-            comparison = DNDProxy[style]
-          end
-        end
-        (@swt_widget.style & comparison) == comparison
+      
+      def interpret_style(*styles)
+        CDTProxy[*styles] rescue super
       end
-
-      def default_style(underscored_widget_name)
-        styles = DEFAULT_STYLES[underscored_widget_name] || [:none]
-        CDTProxy[styles] rescue SWTProxy[styles] rescue DNDProxy[styles]
-      end
-
-      def style(underscored_widget_name, styles)
-        styles = [styles].flatten.compact
-        if styles.empty?         
-          default_style(underscored_widget_name) 
-        else         
-          begin
-            CDTProxy[*styles]
-          rescue
-            begin
-              SWTProxy[*styles]
-            rescue
-              DNDProxy[*styles]
-            end
-          end
-        end
-      end
-
+      
     end
 
   end

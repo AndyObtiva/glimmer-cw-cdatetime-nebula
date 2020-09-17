@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.4.0.2.1
+
+- Make sure `#text_widget_content` returns nil with plain style
+- Support c_date_time keyword aliases as a table editor
+- Fix issue with overwriting specified styles with default styles
+
 ## 1.4.0.2.0
 
 - Actual CDateTimeProxy class that is a subclass of WidgetProxy

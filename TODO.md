@@ -2,6 +2,5 @@
 
 Below are planned features, feature suggestions, and known issues if any.
 
-- Add a CDateTimeProxy widget under SWT or Nebula namespace
-- `cdt` keyword for building CDT styles
-- Accept Ruby symbols directly for CDT styles in widget declaration
+- Handle Ruby to Java Date/Time conversions automatically
+- Document details about Ruby to Java Date/Time conversions

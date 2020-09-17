@@ -1,10 +1,10 @@
-# Nebula CDateTime Widget 1.4.0.2.0
+# Nebula CDateTime Widget 1.4.0.2.1
 ## [<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 /> Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem)
 [![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime-nebula.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime-nebula)
 
-[<img alt="Nebula CDateTime Widget" src="https://www.eclipse.org/nebula/widgets/cdatetime/images/CDTSnippet02.png" />](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php)
+<img alt="Nebula CDateTime Widget" src="https://www.eclipse.org/nebula/widgets/cdatetime/images/CDTSnippet02.png" />](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php)
 
-The [Nebula CDateTime Widget](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php) is a Date and Time selection widget that can be used in a plain (graphical), dropdown, spinner, or compact text style.
+The [Nebula CDateTime Widget](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php) is a Date and Time selection widget that can be used in a simple, dropdown, spinner, or compact style.
 
 Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem) to provide date/time selection via a combo/dropdown-style widget in [Glimmer](https://github.com/AndyObtiva/glimmer) using the `c_date_time` [Glimmer DSL](https://github.com/AndyObtiva/glimmer#glimmer-dsl-syntax) keyword.
 
@@ -12,34 +12,35 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#cust
 
 ## Table of contents
 
-- [Nebula CDateTime Widget 1.4.0.2.0](#nebula-cdatetime-widget-14020)
+# Table of contents
+
+- [Nebula CDateTime Widget 1.4.0.2.1](#nebula-cdatetime-widget-14021)
   - [Pre-requisites](#pre-requisites)
   - [Setup](#setup)
     - [Glimmer Application](#glimmer-application)
     - [Glimmer Custom Shell or Glimmer Custom Widget](#glimmer-custom-shell-or-glimmer-custom-widget)
     - [Java Imports](#java-imports)
-  - [Instructions](#instructions)
+  - [Usage Instructions](#usage-instructions)
     - [Sample](#sample)
-    - [Plain](#plain)
+    - [Simple Style](#simple-style)
       - [`c_date_time`](#cdatetime)
       - [`c_date`](#cdate)
       - [`c_time`](#ctime)
-    - [Drop Down](#drop-down)
+    - [Drop Down Style](#drop-down-style)
       - [`c_date_time_drop_down`](#cdatetimedropdown)
       - [`c_date_drop_down`](#cdatedropdown)
       - [`c_time_drop_down`](#ctimedropdown)
-    - [Spinner](#spinner)
+    - [Spinner Style](#spinner-style)
       - [`c_date_time_spinner`](#cdatetimespinner)
       - [`c_date_spinner`](#cdatespinner)
       - [`c_time_spinner`](#ctimespinner)
-    - [Compact](#compact)
+    - [Compact Style](#compact-style)
       - [`c_date_time_compact`](#cdatetimecompact)
       - [`c_date_compact`](#cdatecompact)
       - [`c_time_compact`](#ctimecompact)
-    - [Style](#style)
-      - [`cdt`](#cdt)
+    - [`CDT` Style Arguments](#cdt-style-arguments)
     - [Data-Binding and Observers:](#data-binding-and-observers)
-    - [Table Editing](#table-editing)
+    - [Table Editor](#table-editor)
   - [API](#api)
     - [Glimmer Custom API](#glimmer-custom-api)
       - [`toggle_open`](#toggleopen)
@@ -66,7 +67,7 @@ Versions follow this convention:
 Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer) application `Gemfile`:
 
 ```ruby
-gem 'glimmer-cw-cdatetime-nebula', '1.4.0.2.0'
+gem 'glimmer-cw-cdatetime-nebula', '1.4.0.2.1'
 ```
 
 Run:
@@ -95,9 +96,9 @@ Requiring the gem automatically configures java imports in [Glimmer](https://git
 
 ## Usage Instructions
 
-This [glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) gem adds the `c_date_time` keyword to the [Glimmer GUI DSL](https://github.com/AndyObtiva/glimmer#glimmer-dsl-syntax) as well as other alias keywords as explained below.
+This [glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) gem adds the `c_date_time` keyword to the [Glimmer GUI DSL](https://github.com/AndyObtiva/glimmer#glimmer-dsl-syntax) as well as other alias keywords (e.g. drop down style, spinner style, and compact style) as explained below.
 
-The `c_date_time` keyword takes [`CDT`](#cdt) style bits as arguments.
+The `c_date_time` keyword optionally takes [`CDT`](#cdt) style bits as arguments. When not specified, [smart defaults](https://github.com/AndyObtiva/glimmer-cw-cdatetime-nebula#cdt-style-arguments) are used instead.
 
 Example:
 
@@ -115,47 +116,200 @@ Please run the following command to launch the [Nebula CDateTime Glimmer Custom 
 glimmer sample:run[c_date_time_gallery]
 ```
 
-### Plain
+Glimmer Code:
 
-![plain screenshot](images/glimmer-cw-cdatetime-nebula-plain.png)
+```ruby
+require_relative '../../lib/glimmer-cw-cdatetime-nebula'
+
+class CDateTimeGallery
+  include Glimmer
+  
+  def open
+    shell {      
+      grid_layout(4, false) {
+        vertical_spacing 20
+      }      
+      text 'Nebula CDateTime Glimmer Custom Widget Gallery'
+      
+      label {
+        layout_data(:center, :center, true, false) {
+          horizontal_span 4
+        }
+        text 'Nebula CDateTime Glimmer Custom Widget Gallery'
+        font height: 24, style: :bold
+      }
+      
+      tab_folder {
+        tab_item {
+          grid_layout 2, false  
+          text 'Simple'
+          
+          label {
+            text 'c_date_time'
+            font name: 'Consolas', height: 14
+          }
+          c_date_time
+          
+          label {
+            text 'c_date'
+            font name: 'Consolas', height: 14
+          }
+          c_date
+          
+          label {
+            text 'c_time'
+            font name: 'Consolas', height: 14
+          }
+          c_time
+        }
+         
+        tab_item {
+          grid_layout 2, false
+          text 'Drop Down'
+          
+          label {
+            text 'c_date_time_drop_down'
+            font name: 'Consolas', height: 14
+          }
+          c_date_time_drop_down {
+            layout_data(:fill, :center, true, true)
+          }
+           
+          label {
+            text 'c_date_drop_down'
+            font name: 'Consolas', height: 14
+          }
+          c_date_drop_down {
+            layout_data(:fill, :center, true, true)
+          }
+           
+          label {
+            text 'c_time_drop_down'
+            font name: 'Consolas', height: 14
+          }
+          c_time_drop_down {
+            layout_data(:fill, :center, true, true)
+          }
+        }
+         
+        tab_item {
+          grid_layout 2, false  
+          text 'Spinner'
+          
+          label {
+            text 'c_date_time_spinner'
+            font name: 'Consolas', height: 14
+          }
+          c_date_time_spinner {
+            layout_data(:fill, :center, true, true)
+          }
+           
+          label {
+            text 'c_date_spinner'
+            font name: 'Consolas', height: 14
+          }
+          c_date_spinner {
+            layout_data(:fill, :center, true, true)
+          }
+           
+          label {
+            text 'c_time_spinner'
+            font name: 'Consolas', height: 14
+          }
+          c_time_spinner {
+            layout_data(:fill, :center, true, true)
+          }
+        }
+              
+        tab_item {
+          grid_layout 2, false  
+          text 'Compact'
+          
+          label {
+            text 'c_date_time_compact'
+            font name: 'Consolas', height: 14
+          }
+          c_date_time_compact {
+            layout_data(:fill, :center, true, true)
+          }
+           
+          label {
+            text 'c_date_compact'
+            font name: 'Consolas', height: 14
+          }
+          c_date_compact {
+            layout_data(:fill, :center, true, true)
+          }
+           
+          label {
+            text 'c_time_compact'
+            font name: 'Consolas', height: 14
+          }
+          c_time_compact {
+            layout_data(:fill, :center, true, true)
+          }
+        }  
+      }
+    }.open  
+  end  
+end
+
+CDateTimeGallery.new.open
+```
+
+### Simple Style
+
+Simple style is the default style when using `c_date_time`, `c_date`, and `c_time` keywords. It displays a graphical calendar/clock.
+
+`CDT::SIMPLE` style is applied by default but may be overriden by manually passing arguments to the keywords.
+
+![simple screenshot](images/glimmer-cw-cdatetime-nebula-simple.png)
 
 #### `c_date_time`
 
-Main keyword representing the Nebula CDateTime custom widget. Defaults to date/time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy hh:mm a'` and plain style with a border
+Main keyword representing the Nebula CDateTime custom widget. Defaults to date/time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy hh:mm a'` and simple style with a border
 
 #### `c_date`
 
-Alias keyword that specifies date [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy'` and plain style with a border
+Alias keyword that specifies date [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy'` and simple style with a border
 
 #### `c_time`
 
-Alias keyword that specifies time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'hh:mm a'` and plain style with a border
+Alias keyword that specifies time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'hh:mm a'` and simple style with a border
 
-### Drop Down
+### Drop Down Style
 
-![plain screenshot](images/glimmer-cw-cdatetime-nebula-drop-down.png)
+Drop down style is used with the `c_date_time_drop_down`, `c_date_drop_down`, and `c_time_drop_down` keywords to provide a text box for textual entry of date/time coupled with a drop down button for bringing up the calendar/clock to perform graphical selection.
+
+`CDT::DROP_DOWN` style is applied by default but may be overriden by manually passing arguments to the keywords.
+
+![dropdown screenshot](images/glimmer-cw-cdatetime-nebula-drop-down.png)
 
 #### `c_date_time_drop_down`
 
 Alias keyword that specifies date/time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy hh:mm a'` and drop down style with a border
 
-![plain screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-date-time.png)
+![date time dropdown screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-date-time.png)
 
 #### `c_date_drop_down`
 
 Alias keyword that specifies date [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy'` and drop down style with a border
 
-![plain screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-date.png)
+![date dropdown screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-date.png)
 
 #### `c_time_drop_down`
 
 Alias that specifies time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'hh:mm a'` and drop down style with a border
 
-![plain screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-time.png)
+![time dropdown screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-time.png)
 
-### Spinner
+### Spinner Style
 
-![plain screenshot](images/glimmer-cw-cdatetime-nebula-spinner.png)
+Spinner style is used with the `c_date_time_spinner`, `c_date_spinner`, and `c_time_spinner` keywords to provide a spinner for textual entry of date/time accompanied by up and down spinner buttons.
+
+`CDT::SPINNER` style is applied by default but may be overriden by manually passing arguments to the keywords.
+
+![spinner screenshot](images/glimmer-cw-cdatetime-nebula-spinner.png)
 
 #### `c_date_time_spinner`
 
@@ -169,9 +323,13 @@ Alias that specifies date [pattern](https://docs.oracle.com/javase/8/docs/api/ja
 
 Alias that specifies time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'hh:mm a'` and spinner style with a border
 
-### Compact
+### Compact Style
 
-![plain screenshot](images/glimmer-cw-cdatetime-nebula-compact.png)
+Compact style is used with the `c_date_time_compact`, `c_date_compact`, and `c_time_compact` keywords to provide a compact text widget for date/time without any extra buttons.
+
+`CDT::COMPACT` style is applied by default but may be overriden by manually passing arguments to the keywords.
+
+![compact screenshot](images/glimmer-cw-cdatetime-nebula-compact.png)
 
 #### `c_date_time_compact`
 
@@ -185,9 +343,7 @@ Alias that specifies date [pattern](https://docs.oracle.com/javase/8/docs/api/ja
 
 Alias that specifies time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'hh:mm a'` and compact style (just a text field) with a border
 
-### Style
-
-#### `cdt`
+### `CDT` Style Arguments
 
 [`CDT`](https://www.eclipse.org/nebula/releases/latest/javadoc/org/eclipse/nebula/widgets/cdatetime/CDT.html) styles are fully documented in the [Nebula `CDT` Javadoc](https://www.eclipse.org/nebula/releases/latest/javadoc/org/eclipse/nebula/widgets/cdatetime/CDT.html).
 
@@ -196,19 +352,19 @@ The `cdt` keyword builds a [`CDT`](https://www.eclipse.org/nebula/releases/lates
 For example, instead of passing style as bit-or'ed `CDT` Constant style bits:
 
 ```ruby
-c_date_time(CDT::BORDER | CDT::COMPACT | CDT::DROP_DOWN | CDT::DATE_LONG)
+c_date_time(CDT::BORDER | CDT::TAB_FIELDS | CDT::DROP_DOWN | CDT::DATE_LONG)
 ```
 
 You instead pass style as comma-separated symbols:
 
 ```ruby
-c_date_time(cdt(:border, :compact, :drop_down, :date_long))
+c_date_time(cdt(:border, :tab_fields, :drop_down, :date_long))
 ```
 
 However, `c_date_time` goes one step further and uses it internally automatically by all `c_date_time` keyword initializers, so you could ditch the `cdt` entirely when constructing a widget.
 
 ```ruby
-c_date_time(:border, :compact, :drop_down, :date_long)
+c_date_time(:border, :tab_fields, :drop_down, :date_long)
 ```
 
 Furthermore, `c_date_time` has pre-configured smart defaults for `CDT` styles:
@@ -251,9 +407,9 @@ Example:
 
 ![Nebula CDateTime Example](images/glimmer-cw-cdatetime-nebula-example.png)
 
-### Table Editing
+### Table Editor
 
-`c_date_time` can be used as a `table` / `table_column` editor.
+`c_date_time` (and any keyword aliases) can be used as a `table` / `table_column` editor by passing as symbol to `editor` property (optionally followed by args model editing property).
 
 Example:
 
@@ -269,7 +425,7 @@ Example:
     table_column {
       text 'End Date'
       width CONFIG[:table_column_width_hint]
-      editor :c_date_time, cdt(:border, :drop_down, :date_long), property: :end_at
+      editor :c_date_drop_down, property: :end_at
     }
     # ... other table_column declarations
     items bind(Task, :list), column_properties(:project_name, :task_type, :name, :start_date, :end_date, :duration, :priority)
@@ -296,7 +452,7 @@ c_date_time(:border, :drop_down) {
 
 This should customize `c_date_time` to function just like `c_time_drop_down`
 
-![plain screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-time.png)
+![time drop down screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-time.png)
 
 ### Glimmer Custom API
 
@@ -313,10 +469,10 @@ Provides access to the inner text widget to allow programmatic adding of obesrve
 Example:
 
 ```
-c_time_drop_down { |proxy|
+c_time { |proxy|
   proxy.text_widget_proxy.content {
     on_swt_mouseup { |event|
-    	 proxy.toggle_open
+      proxy.toggle_open
     }
   }
 }

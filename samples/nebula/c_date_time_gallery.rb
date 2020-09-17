@@ -42,7 +42,7 @@ class CDateTimeGallery
       tab_folder {
         tab_item {
           grid_layout 2, false  
-          text 'Plain'
+          text 'Simple'
           
           label {
             text 'c_date_time'
