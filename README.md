@@ -121,15 +121,15 @@ glimmer sample:run[c_date_time_gallery]
 
 #### `c_date_time`
 
-Main keyword representing the Nebula CDateTime custom widget. Defaults to date/time pattern `'MM/dd/yyyy hh:mm a'` and plain style with a border
+Main keyword representing the Nebula CDateTime custom widget. Defaults to date/time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy hh:mm a'` and plain style with a border
 
 #### `c_date`
 
-Alias keyword that specifies date pattern `'MM/dd/yyyy'` and plain style with a border
+Alias keyword that specifies date [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy'` and plain style with a border
 
 #### `c_time`
 
-Alias keyword that specifies time pattern `'hh:mm a'` and plain style with a border
+Alias keyword that specifies time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'hh:mm a'` and plain style with a border
 
 ### Drop Down
 
@@ -137,19 +137,19 @@ Alias keyword that specifies time pattern `'hh:mm a'` and plain style with a bor
 
 #### `c_date_time_drop_down`
 
-Alias keyword that specifies date/time pattern `'MM/dd/yyyy hh:mm a'` and drop down style with a border
+Alias keyword that specifies date/time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy hh:mm a'` and drop down style with a border
 
 ![plain screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-date-time.png)
 
 #### `c_date_drop_down`
 
-Alias keyword that specifies date pattern `'MM/dd/yyyy'` and drop down style with a border
+Alias keyword that specifies date [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy'` and drop down style with a border
 
 ![plain screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-date.png)
 
 #### `c_time_drop_down`
 
-Alias that specifies time pattern `'hh:mm a'` and drop down style with a border
+Alias that specifies time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'hh:mm a'` and drop down style with a border
 
 ![plain screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-time.png)
 
@@ -159,15 +159,15 @@ Alias that specifies time pattern `'hh:mm a'` and drop down style with a border
 
 #### `c_date_time_spinner`
 
-Alias that specifies date/time pattern `'MM/dd/yyyy hh:mm a'` and spinner style with a border
+Alias that specifies date/time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy hh:mm a'` and spinner style with a border
 
 #### `c_date_spinner`
 
-Alias that specifies date pattern `'MM/dd/yyyy'` and spinner style with a border
+Alias that specifies date [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy'` and spinner style with a border
 
 #### `c_time_spinner`
 
-Alias that specifies time pattern `'hh:mm a'` and spinner style with a border
+Alias that specifies time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'hh:mm a'` and spinner style with a border
 
 ### Compact
 
@@ -175,15 +175,15 @@ Alias that specifies time pattern `'hh:mm a'` and spinner style with a border
 
 #### `c_date_time_compact`
 
-Alias that specifies date/time pattern `'MM/dd/yyyy hh:mm a'` and compact style (just a text field) with a border
+Alias that specifies date/time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy hh:mm a'` and compact style (just a text field) with a border
 
 #### `c_date_compact`
 
-Alias that specifies date pattern `'MM/dd/yyyy'` and compact style (just a text field) with a border
+Alias that specifies date [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'MM/dd/yyyy'` and compact style (just a text field) with a border
 
 #### `c_time_compact`
 
-Alias that specifies time pattern `'hh:mm a'` and compact style (just a text field) with a border
+Alias that specifies time [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) `'hh:mm a'` and compact style (just a text field) with a border
 
 ### Style
 
@@ -284,6 +284,20 @@ Example:
 
 You may check out the Nebula CDateTime Widget [Javadoc API](https://www.eclipse.org/nebula/releases/latest/javadoc/org/eclipse/nebula/widgets/cdatetime/CDateTime.html).
 
+One noteworthy property is [pattern](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html), which can be customized according to the date/time pattern [SimpleDateFormat Javadoc](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html).
+
+Example:
+
+```ruby
+c_date_time(:border, :drop_down) {
+  pattern 'hh:mm a'
+}
+```
+
+This should customize `c_date_time` to function just like `c_time_drop_down`
+
+![plain screenshot](images/glimmer-cw-cdatetime-nebula-drop-down-time.png)
+
 ### Glimmer Custom API
 
 Glimmer adds a few extra API methods to CDateTime from Nebula.
@@ -299,7 +313,7 @@ Provides access to the inner text widget to allow programmatic adding of obesrve
 Example:
 
 ```
-c_time { |proxy|
+c_time_drop_down { |proxy|
   proxy.text_widget_proxy.content {
     on_swt_mouseup { |event|
     	 proxy.toggle_open
