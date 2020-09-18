@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.5.0.0.0
+
+- Upgrade to Nebula CDateTime 1.5.0
+- Upgrade to Glimmer DSL for SWT 4.17.0.0
+
 ## 1.4.0.2.1
 
 - Make sure `#text_widget_content` returns nil with plain style

@@ -1,4 +1,4 @@
-# Nebula CDateTime Widget 1.4.0.2.1
+# Nebula CDateTime Widget 1.5.0.0.0
 ## [<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 /> Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem)
 [![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime-nebula.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime-nebula)
 
@@ -14,7 +14,7 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#cust
 
 # Table of contents
 
-- [Nebula CDateTime Widget 1.4.0.2.1](#nebula-cdatetime-widget-14021)
+- [Nebula CDateTime Widget 1.5.0.0.0](#nebula-cdatetime-widget-15000)
   - [Pre-requisites](#pre-requisites)
   - [Setup](#setup)
     - [Glimmer Application](#glimmer-application)
@@ -67,7 +67,7 @@ Versions follow this convention:
 Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer) application `Gemfile`:
 
 ```ruby
-gem 'glimmer-cw-cdatetime-nebula', '1.4.0.2.1'
+gem 'glimmer-cw-cdatetime-nebula', '1.5.0.0.0'
 ```
 
 Run:
