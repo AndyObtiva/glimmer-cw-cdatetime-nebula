@@ -1,14 +1,14 @@
 # Nebula CDateTime Widget 1.5.0.0.0
-## [<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 /> Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem)
+## [<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer-dsl-swt/master/images/glimmer-logo-hi-res.png" height=40 /> Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-swt#custom-widget-gem)
 [![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime-nebula.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime-nebula)
 
-<img alt="Nebula CDateTime Widget" src="https://www.eclipse.org/nebula/widgets/cdatetime/images/CDTSnippet02.png" />](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php)
+[<img alt="Nebula CDateTime Widget" src="https://www.eclipse.org/nebula/widgets/cdatetime/images/CDTSnippet02.png" />](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php)
 
 The [Nebula CDateTime Widget](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php) is a Date and Time selection widget that can be used in a simple, dropdown, spinner, or compact style.
 
-Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#custom-widget-gem) to provide date/time selection via a combo/dropdown-style widget in [Glimmer](https://github.com/AndyObtiva/glimmer) using the `c_date_time` [Glimmer DSL](https://github.com/AndyObtiva/glimmer#glimmer-dsl-syntax) keyword.
+Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-swt#custom-widget-gem) to provide date/time selection via a combo/dropdown-style widget in [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt) using the `c_date_time` [Glimmer DSL](https://github.com/AndyObtiva/glimmer-dsl-swt#glimmer-gui-dsl-syntax) keyword.
 
-[glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) 1.4.0.x.y gem versions map to Nebula CDateTime Widget version 1.4.0
+[glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) 1.5.0.x.y gem versions map to Nebula CDateTime Widget version 1.5.0 (which comes with [Nebula 2.4.2](https://www.eclipse.org/nebula/releases/2.4.2/index.php))
 
 ## Table of contents
 
@@ -20,7 +20,7 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#cust
     - [Glimmer Application](#glimmer-application)
     - [Glimmer Custom Shell or Glimmer Custom Widget](#glimmer-custom-shell-or-glimmer-custom-widget)
     - [Java Imports](#java-imports)
-  - [Usage Instructions](#usage-instructions)
+  - [Instructions](#instructions)
     - [Sample](#sample)
     - [Simple Style](#simple-style)
       - [`c_date_time`](#cdatetime)
@@ -52,19 +52,19 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer#cust
 
 ## Pre-requisites
 
-- [Glimmer](https://github.com/AndyObtiva/glimmer) application, [Glimmer](https://github.com/AndyObtiva/glimmer) custom shell, or another [Glimmer](https://github.com/AndyObtiva/glimmer) custom widget
-- JRuby version required by Glimmer
-- Java version required by Glimmer
+- [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) application, [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) custom shell, or another [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) custom widget
+- JRuby version required by [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt)
+- Java version required by [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt)
 
 ## Setup
 
 Versions follow this convention:
-- First 3 digits map to the official Nebula CDateTime library version (e.g. 1.4.0)
+- First 3 digits map to the official Nebula CDateTime library version (e.g. 1.5.0)
 - Last 2 digits map to minor and patch versions for Glimmer Custom Widget wrapper
 
 ### Glimmer Application
 
-Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer) application `Gemfile`:
+Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) application `Gemfile`:
 
 ```ruby
 gem 'glimmer-cw-cdatetime-nebula', '1.5.0.0.0'
@@ -80,7 +80,7 @@ jruby -S bundle
 
 ### Glimmer Custom Shell or Glimmer Custom Widget
 
-When reusing in a [Glimmer](https://github.com/AndyObtiva/glimmer) custom shell or custom widget, you can follow the same steps for Glimmer application, and then add a require statement to your library file after `glimmer-dsl-swt` and before additional library require statements:
+When reusing in a [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) custom shell or custom widget, you can follow the same steps for Glimmer application, and then add a require statement to your library file after `glimmer-dsl-swt` and before additional library require statements:
 
 ```ruby
 require 'glimmer-dsl-swt'
@@ -90,13 +90,13 @@ require 'glimmer-cw-cdatetime-nebula'
 
 ### Java Imports
 
-Requiring the gem automatically configures java imports in [Glimmer](https://github.com/AndyObtiva/glimmer) for auto import via [JRuby](https://www.jruby.org/) `include_package` on first use:
+Requiring the gem automatically configures java imports in [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) for auto import via [JRuby](https://www.jruby.org/) `include_package` on first use:
 - `org.eclipse.nebula.cwt`
 - `org.eclipse.nebula.widgets.cdatetime`
 
-## Usage Instructions
+## Instructions
 
-This [glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) gem adds the `c_date_time` keyword to the [Glimmer GUI DSL](https://github.com/AndyObtiva/glimmer#glimmer-dsl-syntax) as well as other alias keywords (e.g. drop down style, spinner style, and compact style) as explained below.
+This [glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) gem adds the `c_date_time` keyword to the [Glimmer GUI DSL](https://github.com/AndyObtiva/glimmer-dsl-swt#glimmer-gui-dsl-syntax) as well as other alias keywords (e.g. drop down style, spinner style, and compact style) as explained below.
 
 The `c_date_time` keyword optionally takes [`CDT`](#cdt) style bits as arguments. When not specified, [smart defaults](https://github.com/AndyObtiva/glimmer-cw-cdatetime-nebula#cdt-style-arguments) are used instead.
 

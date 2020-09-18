@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.5.0.0.1
+
+- Just corrected gem documentation to avoid mentioning older Nebula CDateTime 1.4.0
+
 ## 1.5.0.0.0
 
 - Upgrade to Nebula CDateTime 1.5.0
