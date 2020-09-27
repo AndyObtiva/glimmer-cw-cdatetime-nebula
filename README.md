@@ -1,4 +1,4 @@
-# Nebula CDateTime Widget 1.5.0.0.0
+# Nebula CDateTime Widget 1.5.0.1.0
 ## [<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer-dsl-swt/master/images/glimmer-logo-hi-res.png" height=40 /> Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-swt#custom-widget-gem)
 [![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime-nebula.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime-nebula)
 
@@ -12,9 +12,7 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-
 
 ## Table of contents
 
-# Table of contents
-
-- [Nebula CDateTime Widget 1.5.0.0.0](#nebula-cdatetime-widget-15000)
+- [Nebula CDateTime Widget 1.5.0.1.0](#nebula-cdatetime-widget-15010)
   - [Pre-requisites](#pre-requisites)
   - [Setup](#setup)
     - [Glimmer Application](#glimmer-application)
@@ -59,15 +57,15 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-
 ## Setup
 
 Versions follow this convention:
-- First 3 digits map to the official Nebula CDateTime library version (e.g. 1.5.0)
-- Last 2 digits map to minor and patch versions for Glimmer Custom Widget wrapper
+- First 3 numbers map to the official Nebula CDateTime library version (e.g. 1.5.0)
+- Last 2 numbers map to minor and patch versions for Glimmer Custom Widget wrapper
 
 ### Glimmer Application
 
 Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) application `Gemfile`:
 
 ```ruby
-gem 'glimmer-cw-cdatetime-nebula', '1.5.0.0.0'
+gem 'glimmer-cw-cdatetime-nebula', '1.5.0.1.0'
 ```
 
 Run:
@@ -505,4 +503,4 @@ Copyright (c) 2020 - Andy Maleh
 
 --
 
-[<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 />](https://github.com/AndyObtiva/glimmer) Built for [Glimmer](https://github.com/AndyObtiva/glimmer) (Ruby Desktop Development GUI Library).
+[<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 />](https://github.com/AndyObtiva/glimmer) Built for [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt) (Ruby Desktop Development GUI Library).

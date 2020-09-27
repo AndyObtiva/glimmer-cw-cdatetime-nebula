@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.5.0.1.0
+
+- Upgraded to support glimmer-dsl-swt 4.17.2.0 up to 5.0.0.0
+
 ## 1.5.0.0.1
 
 - Just corrected gem documentation to avoid mentioning older Nebula CDateTime 1.4.0

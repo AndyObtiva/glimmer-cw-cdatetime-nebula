@@ -34,5 +34,3 @@ Glimmer::Config.import_swt_packages += [
 require 'glimmer-cw-cdatetime-nebula/ext/glimmer/dsl/swt/cdt_expression'
 require 'glimmer-cw-cdatetime-nebula/ext/glimmer/swt/c_date_time_proxy'
 require 'views/nebula/c_date_time'
-
-Glimmer::Config::SAMPLE_DIRECTORIES << File.expand_path('../../samples/nebula', __FILE__)
