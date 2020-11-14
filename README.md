@@ -123,10 +123,10 @@ class CDateTimeGallery
   include Glimmer
   
   def open
-    shell {      
+    shell {
       grid_layout(4, false) {
         vertical_spacing 20
-      }      
+      }
       text 'Nebula CDateTime Glimmer Custom Widget Gallery'
       
       label {
@@ -139,7 +139,7 @@ class CDateTimeGallery
       
       tab_folder {
         tab_item {
-          grid_layout 2, false  
+          grid_layout 2, false
           text 'Simple'
           
           label {
@@ -191,7 +191,7 @@ class CDateTimeGallery
         }
          
         tab_item {
-          grid_layout 2, false  
+          grid_layout 2, false
           text 'Spinner'
           
           label {
@@ -220,7 +220,7 @@ class CDateTimeGallery
         }
               
         tab_item {
-          grid_layout 2, false  
+          grid_layout 2, false
           text 'Compact'
           
           label {
@@ -246,10 +246,10 @@ class CDateTimeGallery
           c_time_compact {
             layout_data(:fill, :center, true, true)
           }
-        }  
+        }
       }
-    }.open  
-  end  
+    }.open
+  end
 end
 
 CDateTimeGallery.new.open
@@ -389,7 +389,7 @@ The `selection` property provides access to the value selected by the user. It c
 Example:
 
 ```ruby
-# ... 
+# ...
   composite {
     # ...
     @start_at = c_date_time(:border, :drop_down, :date_long) {

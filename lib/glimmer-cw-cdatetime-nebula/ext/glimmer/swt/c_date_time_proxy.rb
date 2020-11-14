@@ -1,5 +1,5 @@
 # Copyright (c) 2020 - Andy Maleh
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
 # the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -22,8 +22,8 @@
 module Glimmer
   module SWT
     # This modules just configures Glimmer to work with Nebula CDateTime
-    # Since it is wrapping an existing SWT widget with the same name, 
-    # it is not implemented as a typical "Glimmer Custom Widget", yet 
+    # Since it is wrapping an existing SWT widget with the same name,
+    # it is not implemented as a typical "Glimmer Custom Widget", yet
     # just a Glimmer widget proxy that extends Glimmer::SWT::WidgetProxy
     class CDateTimeProxy < WidgetProxy
       def text_widget_proxy
@@ -61,7 +61,7 @@ module Glimmer
         end
       end
       WidgetProxy::DEFAULT_INITIALIZERS['c_time'] = WidgetProxy::DEFAULT_INITIALIZERS['c_time_compact'] = WidgetProxy::DEFAULT_INITIALIZERS['c_time_spinner'] = WidgetProxy::DEFAULT_INITIALIZERS['c_time_drop_down'] = lambda do |widget|
-        has_pattern_style = %w[time_short time_medium date_short date_medium date_long].reduce(false) {|result, style| result || widget.get_data('proxy').has_style?(style)}  
+        has_pattern_style = %w[time_short time_medium date_short date_medium date_long].reduce(false) {|result, style| result || widget.get_data('proxy').has_style?(style)}
         unless has_pattern_style
           widget.format = Glimmer::SWT::CDTProxy[:time_short]
           widget.pattern = 'hh:mm a'
@@ -80,7 +80,7 @@ module Glimmer
         'c_date_time_drop_down'    => 'c_date_time',
         'c_date_drop_down'         => 'c_date_time',
         'c_time_drop_down'         => 'c_date_time',
-      )      
+      )
       
       private
       

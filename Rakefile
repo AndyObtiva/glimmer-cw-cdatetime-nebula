@@ -22,7 +22,8 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Nebula CDateTime Widget - Glimmer Custom Widget - A Date and Time selection widget that can be used in a simple, dropdown, spinner, or compact style.}
   gem.email = "andy.am@gmail.com"
   gem.authors = ["Andy Maleh"]
-  gem.files = Dir['VERSION', 'LICENSE.txt', 'README.md', 'CHANGELOG.md', 'lib/**/*.rb', 'vendor/**/*', 'samples/**/*']
+  gem.require_paths = ['lib', 'opal']
+  gem.files = Dir['VERSION', 'LICENSE.txt', 'README.md', 'CHANGELOG.md', 'lib/**/*.rb', 'vendor/**/*', 'samples/**/*', 'opal/**/*']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new

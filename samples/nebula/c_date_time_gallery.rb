@@ -1,5 +1,5 @@
 # Copyright (c) 2020 - Andy Maleh
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
 # the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -19,16 +19,18 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require_relative '../../lib/glimmer-cw-cdatetime-nebula'
+$LOAD_PATH.unshift File.expand_path('../../../lib', __FILE__)
+
+require 'glimmer-cw-cdatetime-nebula'
 
 class CDateTimeGallery
   include Glimmer
   
   def open
-    shell {      
+    shell {
       grid_layout(4, false) {
         vertical_spacing 20
-      }      
+      }
       text 'Nebula CDateTime Glimmer Custom Widget Gallery'
       
       label {
@@ -41,7 +43,7 @@ class CDateTimeGallery
       
       tab_folder {
         tab_item {
-          grid_layout 2, false  
+          grid_layout 2, false
           text 'Simple'
           
           label {
@@ -93,7 +95,7 @@ class CDateTimeGallery
         }
          
         tab_item {
-          grid_layout 2, false  
+          grid_layout 2, false
           text 'Spinner'
           
           label {
@@ -122,7 +124,7 @@ class CDateTimeGallery
         }
               
         tab_item {
-          grid_layout 2, false  
+          grid_layout 2, false
           text 'Compact'
           
           label {
@@ -148,10 +150,10 @@ class CDateTimeGallery
           c_time_compact {
             layout_data(:fill, :center, true, true)
           }
-        }  
+        }
       }
-    }.open  
-  end  
+    }.open
+  end
 end
 
 CDateTimeGallery.new.open

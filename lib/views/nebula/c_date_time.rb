@@ -2,7 +2,7 @@ require 'glimmer-cw-cdatetime-nebula/ext/glimmer/swt/c_date_time_proxy'
 
 module Nebula
   # This modules just configures Glimmer to work with Nebula CDateTime
-  module CDateTime    
+  module CDateTime
     include Glimmer
     
     keywords = ['c_date_time'] + Glimmer::SWT::WidgetProxy::KEYWORD_ALIASES.select do |key, value|
@@ -28,7 +28,7 @@ module Nebula
                 table_proxy.cancel_edit!
               end
             }
-            on_widget_selected { |event|          
+            on_widget_selected { |event|
               table_proxy.finish_edit! unless event.widget.is_open
             }
             on_widget_default_selected { |event|
@@ -37,7 +37,7 @@ module Nebula
           }
           table_editor_widget_proxy
         end
-      }    
+      }
     end
   end
 end
