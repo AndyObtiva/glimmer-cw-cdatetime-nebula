@@ -122,6 +122,7 @@ PLATFORMS
   java
 
 DEPENDENCIES
+  array_include_methods (>= 1.0.3, < 2.0.0)
   glimmer-dsl-swt (>= 4.17.10.0, < 5.0.0.0)
   jeweler (= 2.3.9)
   rspec (~> 3.5.0)

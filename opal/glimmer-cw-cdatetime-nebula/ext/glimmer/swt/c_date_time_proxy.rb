@@ -5,14 +5,31 @@ module Glimmer
     class CDateTimeProxy < WidgetProxy
       class << self
         def create(keyword, parent, args)
-          case keyword
-          when 'c_date', 'c_date_spinner', 'c_date_compact'
-            args += [:date]
-          when 'c_date_drop_down'
-            args += [:date, :drop_down]
-          when 'c_time', 'c_time_spinner', 'c_time_compact'
-            args += [:time]
+          # TODO support :tab_fields style
+          # TODO support :border style
+          # TODO support :compact style
+          # TODO support :spinner style
+          # TODO support :date_medium and :date_long styles
+          # TODO support :time_medium style
+          # TODO support :CLOCK_24_HOUR style in addition to :CLOCK_12_HOUR
+          # TODO support :BUTTON_ALWAYS, :BUTTON_AUTO, :BUTTON_MANUAL, :BUTTON_NEVER, :BUTTON_LEFT, and :BUTTON_RIGHT styles
+          # TODO support "Today" functionality
+          # TODO support pattern functionality
+          if [keyword].include_any?(['c_date', 'c_date_drop_down', 'c_date_spinner', 'c_date_compact'])
+            args += [:date_short]
           end
+          if [keyword].include_any?(['c_time', 'c_time_drop_down', 'c_time_spinner', 'c_time_compact'])
+            args += [:time_short]
+          end
+          # Temporarily use dropdown for spinner and compact until fully supported in the future
+          if keyword.end_with?('_drop_down') || keyword.end_with?('_spinner') || keyword.end_with?('_compact')
+            args += [:drop_down]
+          else
+            args += [:simple]
+          end
+          
+          pd keyword, args
+          
           new(parent, args)
         end
       end
@@ -24,12 +41,18 @@ module Glimmer
       def post_add_content
         # TODO handle date_drop_down version
         if time?
-          dom_element.timepicker({
-            showPeriod: true,
-            showLeadingZero: true,
-            showOn: 'both',
-            button: "##{time_button_id}",
-          })
+          options = {}
+          if drop_down?
+            options = {
+              showPeriod: true,
+              showLeadingZero: true,
+              showOn: 'both',
+              button: "##{time_button_id}",
+            }
+          end
+          pd id
+          pd dom_element
+          dom_element.timepicker(options)
         else
           options = {}
           if drop_down?
@@ -40,6 +63,8 @@ module Glimmer
               buttonText: 'Select date'
             }
           end
+          pd id
+          pd dom_element
           dom_element.datepicker(options)
         end
         date_time_value = self.date_time
@@ -48,19 +73,19 @@ module Glimmer
       end
       
       def date?
-        args.to_a.include?(:date)
+        args.to_a.include_any?([:date_short, :date_medium, :date_long])
       end
       
       def time?
-        args.to_a.include?(:time)
+        args.to_a.include_any?([:time_short, :time_medium])
       end
       
       def drop_down?
         args.to_a.include?(:drop_down)
       end
       
-      def calendar?
-        args.to_a.include?(:calendar)
+      def simple?
+        args.to_a.include?(:simple)
       end
       
       def date_time
@@ -117,14 +142,15 @@ module Glimmer
       end
       
       def element
-        calendar? ? 'div' : 'input'
+        simple? ? 'div' : 'input'
       end
       
       def dom
+        pd id, name
         @dom ||= html {
           span {
             send(element, type: 'text', id: id, class: name)
-            button(id: time_button_id, class: time_button_class, style: "border: none; background: url(assets/glimmer/images/ui-icons_222222_256x240.png) -80px, -96px; width: 16px; height: 16px;") if time?
+            button(id: time_button_id, class: time_button_class, style: "border: none; background: url(assets/glimmer/images/ui-icons_222222_256x240.png) -80px, -96px; width: 16px; height: 16px;") if drop_down? && time?
           }
         }.to_s
       end
