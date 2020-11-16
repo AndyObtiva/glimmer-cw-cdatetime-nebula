@@ -50,19 +50,22 @@ class CDateTimeGallery
             text 'c_date_time'
             font name: 'Consolas', height: 14
           }
-          c_date_time
+          c_date_time {
+          }
           
           label {
             text 'c_date'
             font name: 'Consolas', height: 14
           }
-          c_date
+          c_date {
+          }
           
           label {
             text 'c_time'
             font name: 'Consolas', height: 14
           }
-          c_time
+          c_time {
+          }
         }
          
         tab_item {

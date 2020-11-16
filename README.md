@@ -1,4 +1,4 @@
-# Nebula CDateTime Widget 1.5.0.1.0
+# Nebula CDateTime Widget 1.5.0.2.0
 ## [<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer-dsl-swt/master/images/glimmer-logo-hi-res.png" height=40 /> Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-swt#custom-widget-gem)
 [![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime-nebula.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime-nebula)
 
@@ -12,7 +12,7 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-
 
 ## Table of contents
 
-- [Nebula CDateTime Widget 1.5.0.1.0](#nebula-cdatetime-widget-15010)
+- [Nebula CDateTime Widget 1.5.0.2.0](#nebula-cdatetime-widget-15020)
   - [Pre-requisites](#pre-requisites)
   - [Setup](#setup)
     - [Glimmer Application](#glimmer-application)
@@ -50,9 +50,14 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-
 
 ## Pre-requisites
 
-- [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) application, [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) custom shell, or another [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) custom widget
+- [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt) application, [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) custom shell, or another [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) custom widget
 - JRuby version required by [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt)
 - Java version required by [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt)
+
+For [Glimmer DSL for Opal](https://github.com/AndyObtiva/glimmer-dsl-opal) auto-webification, this is also required:
+
+- [Glimmer DSL for Opal](https://github.com/AndyObtiva/glimmer-dsl-opal) application, [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-opal) custom shell, or another [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-opal) custom widget
+- [jQuery.clockInput](https://github.com/AndyObtiva/jQuery.clockInput) (included in [gem](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula))
 
 ## Setup
 
@@ -65,7 +70,7 @@ Versions follow this convention:
 Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) application `Gemfile`:
 
 ```ruby
-gem 'glimmer-cw-cdatetime-nebula', '1.5.0.1.0'
+gem 'glimmer-cw-cdatetime-nebula', '1.5.0.2.0'
 ```
 
 Run:

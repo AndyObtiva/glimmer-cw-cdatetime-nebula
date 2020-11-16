@@ -27,6 +27,9 @@ if RUBY_ENGINE == 'ruby'
 elsif RUBY_ENGINE == 'opal'
   require 'glimmer-dsl-swt'
 
+  require 'glimmer-cw-cdatetime-nebula/vendor/Material-Time-Picker-Plugin-jQuery-MDTimePicker/mdtimepicker.min'
+  require 'glimmer-cw-cdatetime-nebula/vendor/Clock-Time-Input-Plugin-jQuery-clockInput/jquery.clockinput.min'
+
   require 'glimmer-cw-cdatetime-nebula/ext/glimmer/dsl/swt/cdt_expression'
   require 'glimmer-cw-cdatetime-nebula/ext/glimmer/swt/c_date_time_proxy'
   require 'views/nebula/c_date_time'

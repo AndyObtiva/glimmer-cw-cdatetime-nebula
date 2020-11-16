@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.5.0.2.0
+
+- Support Glimmer DSL for Opal with `c_time`
+
 ## 1.5.0.1.0
 
 - Upgraded to support glimmer-dsl-swt 4.17.2.0 up to 5.0.0.0
