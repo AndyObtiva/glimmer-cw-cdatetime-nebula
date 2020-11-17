@@ -1,5 +1,5 @@
 require 'glimmer/swt/widget_proxy'
-
+#
 module Glimmer
   module SWT
     class CDateTimeProxy < WidgetProxy
@@ -31,50 +31,34 @@ module Glimmer
             args += [:simple]
           end
           
-          
           new(parent, args, block)
         end
       end
       
       def initialize(parent, args, block)
         super(parent, args, block)
+        post_add_content if block.nil?
       end
       
       def post_add_content
         if time?
+          clocklet
           if drop_down?
-            input_dom_element.mdtimepicker({
-              timeFormat: 'h:mm tt',
-              format: 'h:mm tt',
-              clearBtn: true,
-              hourPadding: true,
-            })
             time_button_dom_element.on('click') do |event|
-              input_dom_element.mdtimepicker('show')
-            end
-          else
-            date_time_value = self.date_time
-            @added_content = true
-            self.date_time = date_time_value
-          
-            input_dom_element.clockInput
-            
-            clock_dom_element.on('click') do |event|
-              if @clock_minutes && clock_dom_element.has_class?('jq-ci--m')
-                clock_dom_element.add_class('jq-ci--h')
-                clock_dom_element.remove_class('jq-ci--m')
-              end
-              @clock_minutes = clock_dom_element.has_class?('jq-ci--m')
+              `clocklet.open(document.getElementById(#{input_id}))`
             end
           end
         else
-          options = {}
+          options = {
+            changeMonth: true,
+            changeYear: true,
+          }
           if drop_down?
             options = {
               showOn: 'both',
               buttonImage: 'assets/glimmer/images/calendar.gif',
               buttonImageOnly: true,
-              buttonText: 'Select date'
+              buttonText: 'Select date',
             }
           end
           input_dom_element.datepicker(options)
@@ -82,6 +66,16 @@ module Glimmer
         date_time_value = self.date_time
         @added_content = true
         self.date_time = date_time_value
+      end
+      
+      def clocklet
+#         @clocklet ||= Native(`clocklet.inline(document.getElementById(#{input_id}), input: document.getElementById(#{clock_id}))`)
+        if drop_down?
+          @clocklet ||= Native(`clocklet.inline(document.getElementById(#{input_id}))`)
+        else
+#           @clocklet ||= Native(`clocklet.inline(document.getElementById(#{clock_id}), {format: 'HH:mm', input: document.getElementById(#{input_id})})`)
+          @clocklet ||= Native(`clocklet.inline(document.getElementById(#{clock_id}), {format: 'HH:mm', input: document.getElementById(#{input_id})})`)
+        end
       end
       
       def date?
@@ -123,22 +117,19 @@ module Glimmer
           default_min = @date_time&.min || default_date.min
           default_sec = @date_time&.sec || default_date.sec
           if time?
-#             if drop_down?
+            if drop_down?
               time_string = input_dom_element.val
-              _, current_hour, current_min, am_pm = time_string.match(/(\d{1,2})\:(\d{1,2})[ ]?([APap]?\.?[Mm]?\.?)/)
-              current_hour = current_hour.to_i
-              am_pm = am_pm.to_s.gsub('.', '').upcase
-              current_hour += 12 if am_pm == 'PM'
-              current_min = current_min.to_i
-              @date_time = DateTime.new(default_year, default_month, default_day, current_hour, current_min, default_sec)
-              # TODO delete this code if not needed as it seems to work without it (test further to confirm)
-#             else
-#               current_hour = clock_dom_element.find('.jq-ci-t_h').text.to_i
-#               current_min = clock_dom_element.find('.jq-ci-t_m').text.to_i
-#               am_pm = clock_dom_element.find('.jq-ci-t_ap--s').empty? ? 'AM' : 'PM'
-#               current_hour += 12 if am_pm == 'PM'
-#               @date_time = DateTime.new(default_year, default_month, default_day, current_hour, current_min, default_sec)
-#             end
+            else
+              time_string = input_dom_element.find('.clocklet').data('clocklet-value')
+            end
+            _, current_hour, current_min, am_pm = time_string.match(/(\d{1,2})\:(\d{1,2})[ ]?([APap]?\.?[Mm]?\.?)/)
+            current_hour ||= default_hour
+            current_min ||= default_min
+            current_hour = current_hour.to_i
+            am_pm = am_pm.to_s.gsub('.', '').upcase
+            current_hour += 12 if am_pm == 'PM'
+            current_min = current_min.to_i
+            @date_time = DateTime.new(default_year, default_month, default_day, current_hour, current_min, default_sec)
           else
             @date_time = DateTime.new(input_dom_element.datepicker('getDate')&.year.to_i, input_dom_element.datepicker('getDate')&.month.to_i, input_dom_element.datepicker('getDate')&.day.to_i, default_hour, default_min, default_sec)
           end
@@ -149,13 +140,16 @@ module Glimmer
       end
       
       def date_time=(value)
+        pd value: value
         if @added_content
           @date_time = value&.to_datetime || DateTime.new
+          pd date_time: @date_time
           if time?
             if drop_down?
-              input_dom_element.mdtimepicker('setValue', @date_time.strftime('%I:%M %p'))
-            else
+#               pd drop_down_value: @date_time.strftime('%H:%M')
               input_dom_element.val(@date_time.strftime('%H:%M'))
+            else
+              clocklet.value(@date_time.strftime('%H:%M'))
             end
           else
             input_dom_element.datepicker('setDate', @date_time.to_time)
@@ -171,16 +165,17 @@ module Glimmer
         {
           'on_widget_selected' => [
             {
-              event: 'click'
+              event: 'input' # clocklet
             },
             {
-              event: 'change'
-            },
-            {
-              event: 'timeChanged'
+              event: 'change' # date
             },
           ],
         }
+      end
+      
+      def listener_path
+        input_path
       end
       
       def time_button_id
@@ -219,12 +214,16 @@ module Glimmer
         Document.find(input_path)
       end
       
+      def clock_id
+        "#{id}-clock"
+      end
+      
       def clock_class
-        'jq-ci'
+        "#{name}-clock"
       end
       
       def clock_path
-        "#{path} .#{clock_class}"
+        "#{path} ##{clock_id}"
       end
       
       def clock_dom_element
@@ -232,15 +231,31 @@ module Glimmer
       end
       
       def dom
-        input_element = (date? || date_time?) && simple? ? 'div' : 'input'
+        input_element = date? && simple? ? 'div' : 'input'
+        input_class_value = "#{input_class} hide" if time? && simple?
+        input_attributes = {type: 'text', id: input_id, class: input_class_value}
+        input_attributes['data-clocklet'] = 'data-clocklet' if time? && drop_down?
         @dom ||= html {
           span(id: id, class: name) {
-            send(input_element, type: 'text', id: input_id, class: input_class)
+            send(input_element, input_attributes)
+            div(id: clock_id, class: clock_class) if time? && simple?
             button(id: time_button_id, class: time_button_class, style: "border: none; background: url(assets/glimmer/images/ui-icons_222222_256x240.png) -80px, -96px; width: 16px; height: 16px;") if time? && drop_down?
           }
         }.to_s
       end
       
+      def widget_property_listener_installers
+        super.merge(
+          CDateTimeProxy => {
+            :date_time => lambda do |observer|
+              on_widget_selected { |selection_event|
+                observer.call(date_time)
+              }
+            end
+          },
+          
+        )
+      end
     end
     
     # Aliases: `date`, `date_drop_down`, `time`, and `calendar`

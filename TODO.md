@@ -7,7 +7,9 @@ Below are planned features, feature suggestions, and known issues if any.
 - Support Glimmer DSL for Opal with `c_date`
 - Support Glimmer DSL for Opal with `c_date_drop_down`
 - Support Glimmer DSL for Opal with `c_time_drop_down`
+- Handle sharing of assets with a Rails app like css and images
 - c_date_time_gallery sample running in Glimmer DSL for Opal
+- Update c_date_time_gallery sample to use data-binding
 - Document supported Glimmer DSL for Opal features in README with screenshots
 - Handle Ruby to Java Date/Time conversions automatically via date_time property
 - Document details about Ruby to Java Date/Time conversions if needed

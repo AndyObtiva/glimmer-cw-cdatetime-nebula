@@ -24,9 +24,16 @@ $LOAD_PATH.unshift File.expand_path('../../../lib', __FILE__)
 require 'glimmer-cw-cdatetime-nebula'
 
 class CDateTimeGallery
+  class Person
+    attr_accessor :date_of_birth
+  end
+  
   include Glimmer
   
   def open
+    person = Person.new
+    person.date_of_birth = DateTime.new(2013, 7, 12, 18, 37, 23)
+    
     shell {
       grid_layout(4, false) {
         vertical_spacing 20
@@ -50,21 +57,20 @@ class CDateTimeGallery
             text 'c_date_time'
             font name: 'Consolas', height: 14
           }
-          c_date_time {
-          }
+          c_date_time
           
           label {
             text 'c_date'
             font name: 'Consolas', height: 14
           }
-          c_date {
-          }
+          c_date
           
           label {
             text 'c_time'
             font name: 'Consolas', height: 14
           }
           c_time {
+            date_time bind(person, :date_of_birth)
           }
         }
          
@@ -94,6 +100,7 @@ class CDateTimeGallery
           }
           c_time_drop_down {
             layout_data(:fill, :center, true, true)
+            date_time bind(person, :date_of_birth)
           }
         }
          
@@ -123,6 +130,7 @@ class CDateTimeGallery
           }
           c_time_spinner {
             layout_data(:fill, :center, true, true)
+            date_time bind(person, :date_of_birth)
           }
         }
               
@@ -152,6 +160,7 @@ class CDateTimeGallery
           }
           c_time_compact {
             layout_data(:fill, :center, true, true)
+            date_time bind(person, :date_of_birth)
           }
         }
       }
