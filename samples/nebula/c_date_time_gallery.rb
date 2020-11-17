@@ -70,7 +70,7 @@ class CDateTimeGallery
             font name: 'Consolas', height: 14
           }
           c_time {
-            date_time bind(person, :date_of_birth)
+            selection bind(person, :date_of_birth)
           }
         }
          
@@ -100,7 +100,7 @@ class CDateTimeGallery
           }
           c_time_drop_down {
             layout_data(:fill, :center, true, true)
-            date_time bind(person, :date_of_birth)
+            selection bind(person, :date_of_birth)
           }
         }
          
@@ -130,7 +130,7 @@ class CDateTimeGallery
           }
           c_time_spinner {
             layout_data(:fill, :center, true, true)
-            date_time bind(person, :date_of_birth)
+            selection bind(person, :date_of_birth)
           }
         }
               
@@ -160,7 +160,7 @@ class CDateTimeGallery
           }
           c_time_compact {
             layout_data(:fill, :center, true, true)
-            date_time bind(person, :date_of_birth)
+            selection bind(person, :date_of_birth)
           }
         }
       }
