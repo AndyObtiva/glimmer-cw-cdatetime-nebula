@@ -69,9 +69,7 @@ module Glimmer
       end
       
       def clocklet
-#         @clocklet ||= Native(`clocklet.inline(document.getElementById(#{input_id}), input: document.getElementById(#{clock_id}))`)
         if simple?
-#           @clocklet ||= Native(`clocklet.inline(document.getElementById(#{clock_id}), {format: 'HH:mm', input: document.getElementById(#{input_id})})`)
           @clocklet ||= Native(`clocklet.inline(document.getElementById(#{clock_id}), {format: 'HH:mm', input: document.getElementById(#{input_id})})`)
         end
       end
@@ -116,7 +114,7 @@ module Glimmer
           default_sec = @selection&.sec || default_date.sec
           if time?
             time_string = input_dom_element.val
-            _, current_hour, current_min = time_string.to_s.match(/(\d{1,2})\:(\d{1,2})/).to_a
+             _, current_hour, current_min, am_pm = time_string.match(/(\d{1,2})\:(\d{1,2})[ ]?([APap]?\.?[Mm]?\.?)/).to_a
             current_hour ||= default_hour
             current_min ||= default_min
             current_hour = current_hour.to_i
@@ -138,7 +136,7 @@ module Glimmer
           @selection = value&.to_datetime || DateTime.new
           if time?
             if drop_down?
-              input_dom_element.val(@selection.strftime('%H:%M'))
+              input_dom_element.val(@selection.strftime('%I:%M %p'))
             else
               clocklet.value(@selection.strftime('%H:%M'))
             end
@@ -225,7 +223,7 @@ module Glimmer
         input_element = date? && simple? ? 'div' : 'input'
         input_class_value = "#{input_class} hide" if time? && simple?
         input_attributes = {type: 'text', id: input_id, class: input_class_value}
-        input_attributes['data-clocklet'] = '' if time? && drop_down?
+        input_attributes['data-clocklet'] = "format: hh:mm A;" if time? && drop_down?
         @dom ||= html {
           span(id: id, class: name) {
             send(input_element, input_attributes)
