@@ -2,7 +2,9 @@
 
 ## 1.5.0.2.0
 
-- Support Glimmer DSL for Opal with `c_time`
+- Support Glimmer DSL for Opal with `c_time`, `c_time_drop_down`, `c_time_compact`, `c_date`, and `c_date_drop_down`
+- Update c_date_time_gallery sample to use data-binding
+- c_date_time_gallery sample running in Glimmer DSL for Opal
 
 ## 1.5.0.1.0
 

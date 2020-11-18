@@ -69,8 +69,13 @@ module Glimmer
       end
       
       def clocklet
+        unless defined?(@@clocklet_default_options_set)
+          `clocklet.defaultOptions.appendTo = 'parent'`
+          `clocklet.defaultOptions.format = 'hh:mm A'`
+          @@clocklet_default_options_set = true
+        end
         if simple?
-          @clocklet ||= Native(`clocklet.inline(document.getElementById(#{clock_id}), {format: 'HH:mm', input: document.getElementById(#{input_id})})`)
+          @clocklet ||= Native(`clocklet.inline(document.getElementById(#{clock_id}), {input: document.getElementById(#{input_id})})`)
         end
       end
       
@@ -87,8 +92,7 @@ module Glimmer
       end
       
       def drop_down?
-        # Temporarily use dropdown for spinner and compact until fully supported in the future
-        args.to_a.include?(:drop_down) || spinner? || compact?
+        args.to_a.include?(:drop_down)
       end
       
       def simple?
@@ -135,10 +139,11 @@ module Glimmer
         if @added_content
           @selection = value&.to_datetime || DateTime.new
           if time?
-            if drop_down?
-              input_dom_element.val(@selection.strftime('%I:%M %p'))
+            formatted_time = @selection.strftime('%I:%M %p')
+            if drop_down? || spinner? || compact?
+              input_dom_element.val(formatted_time)
             else
-              clocklet.value(@selection.strftime('%H:%M'))
+              clocklet.value(formatted_time)
             end
           else
             input_dom_element.datepicker('setDate', @selection.to_time)
@@ -147,8 +152,6 @@ module Glimmer
           @initial_selection = value
         end
       end
-      
-      # TODO add date, time, year, month, day, hours, minutes, seconds attribute methods
       
       def observation_request_to_event_mapping
         {
@@ -212,7 +215,7 @@ module Glimmer
       end
       
       def clock_path
-        "#{path} ##{clock_id}"
+        "#{path} .clocklet"
       end
       
       def clock_dom_element
@@ -223,9 +226,21 @@ module Glimmer
         input_element = date? && simple? ? 'div' : 'input'
         input_class_value = "#{input_class} hide" if time? && simple?
         input_attributes = {type: 'text', id: input_id, class: input_class_value}
-        input_attributes['data-clocklet'] = "format: hh:mm A;" if time? && drop_down?
+        input_attributes['data-clocklet'] = 'format: hh:mm A; appendTo: parent;' if time?
+        the_class = name
+        the_class += ' simple' if simple?
+        the_class += ' drop-down' if drop_down?
+        the_class += ' compact' if compact?
+        the_class += ' spinner' if spinner?
         @dom ||= html {
-          span(id: id, class: name) {
+          span(id: id, class: the_class) {
+            style {
+              css {
+                s('.c-date-time.compact .clocklet, .c-date-time.spinner .clocklet') {
+                  pv 'display', 'none'
+                }
+              }
+            }
             send(input_element, input_attributes)
             div(id: clock_id, class: clock_class) if time? && simple?
             button(id: time_button_id, class: time_button_class, style: "border: none; background: url(assets/glimmer/images/ui-icons_222222_256x240.png) -80px, -96px; width: 16px; height: 16px;") if time? && drop_down?
