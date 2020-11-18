@@ -4,11 +4,10 @@ Below are planned features, feature suggestions, and known issues if any.
 
 ## Next
 
-- Handle sharing of assets with a Rails app like css and images
-- Document supported Glimmer DSL for Opal features in README with screenshots
 
 ## Future
 
+- Document supported Glimmer DSL for Opal features in README with screenshots
 - Handle Ruby to Java Date/Time conversions automatically via date_time property
 - Document details about Ruby to Java Date/Time conversions if needed
 - On focus out of compact time field, reformat time

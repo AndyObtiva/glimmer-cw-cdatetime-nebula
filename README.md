@@ -8,6 +8,8 @@ The [Nebula CDateTime Widget](https://www.eclipse.org/nebula/widgets/cdatetime/c
 
 Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-swt#custom-widget-gem) to provide date/time selection via a combo/dropdown-style widget in [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt) using the `c_date_time` [Glimmer DSL](https://github.com/AndyObtiva/glimmer-dsl-swt#glimmer-gui-dsl-syntax) keyword.
 
+Now, also supports [Glimmer DSL for Opal](#glimmer-dsl-for-opal) Auto-Webifier of Desktop Apps via Rails/Opal.
+
 [glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) 1.5.0.x.y gem versions map to Nebula CDateTime Widget version 1.5.0 (which comes with [Nebula 2.4.2](https://www.eclipse.org/nebula/releases/2.4.2/index.php))
 
 ## Table of contents
@@ -15,11 +17,16 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-
 - [Nebula CDateTime Widget 1.5.0.2.0](#nebula-cdatetime-widget-15020)
   - [Pre-requisites](#pre-requisites)
   - [Setup](#setup)
-    - [Glimmer Application](#glimmer-application)
-    - [Glimmer Custom Shell or Glimmer Custom Widget](#glimmer-custom-shell-or-glimmer-custom-widget)
-    - [Java Imports](#java-imports)
+    - [Glimmer DSL for SWT](#glimmer-dsl-for-swt)
+      - [Glimmer Application](#glimmer-application)
+      - [Glimmer Custom Shell or Glimmer Custom Widget](#glimmer-custom-shell-or-glimmer-custom-widget)
+      - [Java Imports](#java-imports)
+    - [Glimmer DSL for Opal](#glimmer-dsl-for-opal)
+      - [Setup](#setup)
   - [Instructions](#instructions)
     - [Sample](#sample)
+      - [Glimmer DSL for SWT Sample](#glimmer-dsl-for-swt-sample)
+      - [Glimmer DSL for Opal Sample](#glimmer-dsl-for-opal-sample)
     - [Simple Style](#simple-style)
       - [`c_date_time`](#cdatetime)
       - [`c_date`](#cdate)
@@ -56,8 +63,8 @@ Packaged as a [Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-
 
 For [Glimmer DSL for Opal](https://github.com/AndyObtiva/glimmer-dsl-opal) auto-webification, this is also required:
 
-- [Glimmer DSL for Opal](https://github.com/AndyObtiva/glimmer-dsl-opal) application, [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-opal) custom shell, or another [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-opal) custom widget
-- [jQuery.clockInput](https://github.com/AndyObtiva/jQuery.clockInput) (included in [gem](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula))
+- [Glimmer DSL for Opal](https://github.com/AndyObtiva/glimmer-dsl-opal) Rails application
+- [Clocklet](https://github.com/luncheon/clocklet) (included in gem)
 
 ## Setup
 
@@ -65,12 +72,14 @@ Versions follow this convention:
 - First 3 numbers map to the official Nebula CDateTime library version (e.g. 1.5.0)
 - Last 2 numbers map to minor and patch versions for Glimmer Custom Widget wrapper
 
-### Glimmer Application
+### Glimmer DSL for SWT
+
+#### Glimmer Application
 
 Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) application `Gemfile`:
 
 ```ruby
-gem 'glimmer-cw-cdatetime-nebula', '1.5.0.2.0'
+gem 'glimmer-cw-cdatetime-nebula', '~> 1.5.0.2.0'
 ```
 
 Run:
@@ -81,7 +90,7 @@ jruby -S bundle
 
 (or just `bundle` if using [RVM)
 
-### Glimmer Custom Shell or Glimmer Custom Widget
+#### Glimmer Custom Shell or Glimmer Custom Widget
 
 When reusing in a [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) custom shell or custom widget, you can follow the same steps for Glimmer application, and then add a require statement to your library file after `glimmer-dsl-swt` and before additional library require statements:
 
@@ -91,11 +100,42 @@ require 'glimmer-cw-cdatetime-nebula'
 # ... more require statements follow
 ```
 
-### Java Imports
+#### Java Imports
 
 Requiring the gem automatically configures java imports in [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) for auto import via [JRuby](https://www.jruby.org/) `include_package` on first use:
 - `org.eclipse.nebula.cwt`
 - `org.eclipse.nebula.widgets.cdatetime`
+
+### Glimmer DSL for Opal
+
+The [glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) gem is a Rails Engine gem that includes assets and supports [Glimmer DSL for Opal](https://github.com/AndyObtiva/glimmer-dsl-opal).
+
+#### Setup
+
+Please follow the following steps to setup assuming you have a pre-setup [Glimmer DSL for Opal](https://github.com/AndyObtiva/glimmer-dsl-opal) Rails app.
+
+Add the following to `Gemfile` after `glimmer-dsl-opal` and other `glimer-dsl-*` gems:
+
+```ruby
+gem 'glimmer-cw-cdatetime-nebula', '~> 1.5.0.2.0'
+```
+
+Edit `app/views/layouts/application.html.erb` and add the following below other `stylesheet_link_tag` declarations:
+
+```erb
+<%= stylesheet_link_tag    'glimmer_cw_cdatetime_nebula/glimmer_cw_cdatetime_nebula', media: 'all', 'data-turbolinks-track': 'reload' %>
+```
+
+That's it! Now, you can use the following keywords:
+- `c_date`
+- `c_time`
+- `c_date_drop_down`
+- `c_time_drop_down`
+- `c_time_compact`
+
+Here is a sample Rails app that has everything configured (you just have to edit `app/assets/javascripts/application.rb` to enable the desired sample):
+
+https://github.com/AndyObtiva/sample-glimmer-dsl-opal-rails5-app
 
 ## Instructions
 
@@ -112,6 +152,8 @@ c_date_time(:border, :compact, :drop_down, :date_long)
 Further instructions may be found at the [Nebula CDateTime Widget homepage](https://www.eclipse.org/nebula/widgets/cdatetime/cdatetime.php).
 
 ### Sample
+
+#### Glimmer DSL for SWT Sample
 
 Please run the following command to launch the [Nebula CDateTime Glimmer Custom Widget Gallery](samples/nebula/c_date_time_gallery.rb) app:
 
@@ -259,6 +301,28 @@ end
 
 CDateTimeGallery.new.open
 ```
+
+#### Glimmer DSL for Opal Sample
+
+The same Glimmer DSL for SWT sample runs in Glimmer DSL for Opal unchanged, albeit with partial support at the moment.
+
+Open a `Document.ready?` block in `app/assets/javascripts/application.rb` and add inside it the Glimmer GUI DSL code above or a require statement as done below.
+
+```ruby
+require 'glimmer-dsl-opal'
+
+Document.ready? do
+  require 'samples/nebula/c_date_time_gallery.rb'
+end
+```
+
+Run:
+
+`rails s`
+
+Visit: 'http://localhost:3000'
+
+![simple screenshot](images/glimmer-cw-cdatetime-nebula-opal-simple.png)
 
 ### Simple Style
 
@@ -480,7 +544,6 @@ c_time { |proxy|
   }
 }
 ```
-
 
 ## TODO
 
