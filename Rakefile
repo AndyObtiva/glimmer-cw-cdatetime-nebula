@@ -23,7 +23,7 @@ Jeweler::Tasks.new do |gem|
   gem.email = "andy.am@gmail.com"
   gem.authors = ["Andy Maleh"]
   gem.require_paths = ['lib', 'opal']
-  gem.files = Dir['VERSION', 'LICENSE.txt', 'README.md', 'CHANGELOG.md', 'lib/**/*.rb', 'vendor/**/*', 'samples/**/*', 'opal/**/*', 'app/**/*']
+  gem.files = Dir['VERSION', 'LICENSE.txt', 'README.md', 'CHANGELOG.md', 'lib/**/*', 'vendor/**/*', 'samples/**/*', 'opal/**/*', 'app/**/*']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
