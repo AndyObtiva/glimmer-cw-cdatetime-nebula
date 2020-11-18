@@ -24,6 +24,8 @@ if RUBY_ENGINE == 'ruby'
   Opal.append_path File.expand_path('../../opal', __FILE__).untaint
   Opal.append_path File.expand_path('..', __FILE__).untaint
   Opal.append_path File.expand_path('../..', __FILE__).untaint
+  
+  require_relative 'glimmer_cw_cdatetime_nebula/engine'
 elsif RUBY_ENGINE == 'opal'
   require 'glimmer-dsl-swt'
 
