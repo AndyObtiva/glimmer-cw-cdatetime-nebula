@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.5.0.3.0
+
+- Support Glimmer DSL for Opal with the `c_date_time` and `c_date_time_drop_down` keywords
+
 ## 1.5.0.2.0
 
 - Support Glimmer DSL for Opal with `c_time`, `c_time_drop_down`, `c_time_compact`, `c_date`, and `c_date_drop_down`

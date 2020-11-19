@@ -126,9 +126,11 @@ Edit `app/views/layouts/application.html.erb` and add the following below other 
 <%= stylesheet_link_tag    'glimmer_cw_cdatetime_nebula/glimmer_cw_cdatetime_nebula', media: 'all', 'data-turbolinks-track': 'reload' %>
 ```
 
-That's it! Now, you can use the following keywords:
+That's it! Now, you can use the following keywords (with other keywords mentioned under [instructions](#instructions) having partial support):
+- `c_date_time`
 - `c_date`
 - `c_time`
+- `c_date_time_drop_down`
 - `c_date_drop_down`
 - `c_time_drop_down`
 - `c_time_compact`
