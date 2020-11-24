@@ -1,4 +1,4 @@
-# Nebula CDateTime Widget 1.5.0.2.0
+# Nebula CDateTime Widget 1.5.0.3.0
 ## [<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer-dsl-swt/master/images/glimmer-logo-hi-res.png" height=40 /> Glimmer Custom Widget](https://github.com/AndyObtiva/glimmer-dsl-swt#custom-widget-gem)
 [![Gem Version](https://badge.fury.io/rb/glimmer-cw-cdatetime-nebula.svg)](http://badge.fury.io/rb/glimmer-cw-cdatetime-nebula)
 
@@ -14,7 +14,7 @@ Now, also supports [Glimmer DSL for Opal](#glimmer-dsl-for-opal) Auto-Webifier o
 
 ## Table of contents
 
-- [Nebula CDateTime Widget 1.5.0.2.0](#nebula-cdatetime-widget-15020)
+- [Nebula CDateTime Widget 1.5.0.3.0](#nebula-cdatetime-widget-15030)
   - [Pre-requisites](#pre-requisites)
   - [Setup](#setup)
     - [Glimmer DSL for SWT](#glimmer-dsl-for-swt)
@@ -79,7 +79,7 @@ Versions follow this convention:
 Add the following to a [Glimmer](https://github.com/AndyObtiva/glimmer-dsl-swt) application `Gemfile`:
 
 ```ruby
-gem 'glimmer-cw-cdatetime-nebula', '~> 1.5.0.2.0'
+gem 'glimmer-cw-cdatetime-nebula', '~> 1.5.0.3.0'
 ```
 
 Run:
@@ -117,7 +117,7 @@ Please follow the following steps to setup assuming you have a pre-setup [Glimme
 Add the following to `Gemfile` after `glimmer-dsl-opal` and other `glimer-dsl-*` gems:
 
 ```ruby
-gem 'glimmer-cw-cdatetime-nebula', '~> 1.5.0.2.0'
+gem 'glimmer-cw-cdatetime-nebula', '~> 1.5.0.3.0'
 ```
 
 Edit `app/views/layouts/application.html.erb` and add the following below other `stylesheet_link_tag` declarations:
@@ -160,18 +160,29 @@ Further instructions may be found at the [Nebula CDateTime Widget homepage](http
 Please run the following command to launch the [Nebula CDateTime Glimmer Custom Widget Gallery](samples/nebula/c_date_time_gallery.rb) app:
 
 ```
-glimmer sample:run[c_date_time_gallery]
+glimmer samples # select Nebula C Date Time Gallery sample
 ```
+
+With the [glimmer-cw-cdatetime-nebula](https://rubygems.org/gems/glimmer-cw-cdatetime-nebula) gem installed, the `glimmer samples` command will automatically detect and list the Nebula CDateTime Gallery sample for you to select and launch.
 
 Glimmer Code:
 
 ```ruby
-require_relative '../../lib/glimmer-cw-cdatetime-nebula'
+$LOAD_PATH.unshift File.expand_path('../../../lib', __FILE__)
+
+require 'glimmer-cw-cdatetime-nebula'
 
 class CDateTimeGallery
+  class Person
+    attr_accessor :date_of_birth
+  end
+  
   include Glimmer
   
   def open
+    person = Person.new
+    person.date_of_birth = DateTime.new(2013, 7, 12, 18, 37, 23)
+    
     shell {
       grid_layout(4, false) {
         vertical_spacing 20
@@ -195,19 +206,25 @@ class CDateTimeGallery
             text 'c_date_time'
             font name: 'Consolas', height: 14
           }
-          c_date_time
+          c_date_time {
+            selection bind(person, :date_of_birth)
+          }
           
           label {
             text 'c_date'
             font name: 'Consolas', height: 14
           }
-          c_date
+          c_date {
+            selection bind(person, :date_of_birth)
+          }
           
           label {
             text 'c_time'
             font name: 'Consolas', height: 14
           }
-          c_time
+          c_time {
+            selection bind(person, :date_of_birth)
+          }
         }
          
         tab_item {
@@ -220,6 +237,7 @@ class CDateTimeGallery
           }
           c_date_time_drop_down {
             layout_data(:fill, :center, true, true)
+            selection bind(person, :date_of_birth)
           }
            
           label {
@@ -228,6 +246,7 @@ class CDateTimeGallery
           }
           c_date_drop_down {
             layout_data(:fill, :center, true, true)
+            selection bind(person, :date_of_birth)
           }
            
           label {
@@ -236,6 +255,7 @@ class CDateTimeGallery
           }
           c_time_drop_down {
             layout_data(:fill, :center, true, true)
+            selection bind(person, :date_of_birth)
           }
         }
          
@@ -249,6 +269,7 @@ class CDateTimeGallery
           }
           c_date_time_spinner {
             layout_data(:fill, :center, true, true)
+            selection bind(person, :date_of_birth)
           }
            
           label {
@@ -257,6 +278,7 @@ class CDateTimeGallery
           }
           c_date_spinner {
             layout_data(:fill, :center, true, true)
+            selection bind(person, :date_of_birth)
           }
            
           label {
@@ -265,6 +287,7 @@ class CDateTimeGallery
           }
           c_time_spinner {
             layout_data(:fill, :center, true, true)
+            selection bind(person, :date_of_birth)
           }
         }
               
@@ -278,6 +301,7 @@ class CDateTimeGallery
           }
           c_date_time_compact {
             layout_data(:fill, :center, true, true)
+            selection bind(person, :date_of_birth)
           }
            
           label {
@@ -286,6 +310,7 @@ class CDateTimeGallery
           }
           c_date_compact {
             layout_data(:fill, :center, true, true)
+            selection bind(person, :date_of_birth)
           }
            
           label {
@@ -294,6 +319,7 @@ class CDateTimeGallery
           }
           c_time_compact {
             layout_data(:fill, :center, true, true)
+            selection bind(person, :date_of_birth)
           }
         }
       }
@@ -303,6 +329,8 @@ end
 
 CDateTimeGallery.new.open
 ```
+
+![simple screenshot](images/glimmer-cw-cdatetime-nebula-simple.png)
 
 #### Glimmer DSL for Opal Sample
 
