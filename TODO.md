@@ -7,6 +7,7 @@ Below are planned features, feature suggestions, and known issues if any.
 
 ## Future
 
+- In main lib file, check first that we are inside Rails instead of CRuby since one can use Rails in JRuby too
 - Document supported Glimmer DSL for Opal features in README with screenshots
 - Handle Ruby to Java Date/Time conversions automatically via date_time property
 - Document details about Ruby to Java Date/Time conversions if needed
