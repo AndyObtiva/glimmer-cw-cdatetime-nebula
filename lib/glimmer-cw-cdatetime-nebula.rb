@@ -19,7 +19,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-if RUBY_ENGINE == 'ruby'
+if RUBY_ENGINE == 'ruby' # TODO check that we are inside Rails instead since one can use Rails in JRuby too
   require 'opal'
   Opal.append_path File.expand_path('../../opal', __FILE__).untaint
   Opal.append_path File.expand_path('..', __FILE__).untaint
